@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 775" role="img" aria-labelledby="title desc">
+  <title id="title">Digitale Stadtplanung mit geografischen Daten</title>
+  <desc id="desc">Illustration einer grünen Stadt mit Gebäuden, Verkehrswegen und digital verknüpften Geodaten.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#d6e9ee"/>
+      <stop offset="1" stop-color="#f3f5e9"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#879b8c"/>
+      <stop offset="1" stop-color="#5f786d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#173b35" flood-opacity=".17"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="775" fill="url(#sky)"/>
+  <circle cx="1015" cy="113" r="53" fill="#f8e9bd"/>
+  <path d="M0 391c144-104 249-110 365-43 100-99 211-129 331-40 123-97 260-86 504 23v444H0z" fill="#bed4b8"/>
+  <path d="M0 530c155-118 305-111 415-28 141-112 253-92 370-17 142-98 285-48 415 25v265H0z" fill="#d6e5cf"/>
+  <g filter="url(#shadow)">
+    <path d="m0 617 290-101 256 116 297-166 357 94v215H0z" fill="url(#road)"/>
+    <path d="m0 663 294-101 252 116 298-166 356 94" fill="none" stroke="#d9e3d6" stroke-width="6"/>
+    <path d="m0 631 291-101 255 116 297-166 357 94" fill="none" stroke="#edf2e7" stroke-width="4" stroke-dasharray="22 20"/>
+    <path d="m481 775 97-170 39-113" fill="none" stroke="#b7c2ad" stroke-width="32"/>
+    <path d="m481 775 97-170 39-113" fill="none" stroke="#f0f0dc" stroke-width="4" stroke-dasharray="15 14"/>
+  </g>
+  <g stroke="#fff" stroke-width="5" stroke-linejoin="round" filter="url(#shadow)">
+    <path d="m89 402 93-39 95 38v149l-94 39-94-39z" fill="#f0e7d2"/>
+    <path d="m89 402 94 40 94-41-95-38z" fill="#fff6e3"/>
+    <path d="m183 442v147" stroke="#d2c5a8"/>
+    <path d="m125 424 23 10v24l-23-10zm57 25 24-10v24l-24 10zm-57 29 23 10v24l-23-10zm57 25 24-10v24l-24 10z" fill="#6e9caf" stroke="none"/>
+    <path d="m320 337 104-48 105 47v184l-104 46-105-46z" fill="#d9e8df"/>
+    <path d="m320 337 104 45 105-46-105-47z" fill="#eff7ef"/>
+    <path d="m424 382v184" stroke="#aec3b6"/>
+    <path d="m348 360 26 11v30l-26-12zm67 29 26-12v30l-26 12zm-67 36 26 11v30l-26-12zm67 29 26-12v30l-26 12z" fill="#6b9a9a" stroke="none"/>
+    <path d="m586 382 79-34 80 34v140l-80 35-79-35z" fill="#efe2c8"/>
+    <path d="m586 382 79 36 80-36-80-34z" fill="#fff1d9"/>
+    <path d="m665 418v139" stroke="#d2c1a2"/>
+    <path d="m608 398 20 9v24l-20-9zm53 24 21-10v24l-21 10zm-53 35 20 9v24l-20-9zm53 24 21-10v24l-21 10z" fill="#668e9b" stroke="none"/>
+    <path d="m819 299 93-44 94 44v182l-94 42-93-42z" fill="#d8e7dc"/>
+    <path d="m819 299 93 42 94-42-94-44z" fill="#f0f7ed"/>
+    <path d="m912 341v182" stroke="#adc3b4"/>
+    <path d="m845 320 24 11v29l-24-11zm58 27 24-11v29l-24 11zm-58 38 24 11v29l-24-11zm58 27 24-11v29l-24 11z" fill="#6a9caf" stroke="none"/>
+  </g>
+  <g fill="#377650">
+    <path d="m39 555 18-45 18 45z"/><path d="m62 557 15-37 15 37z"/>
+    <path d="m1087 532 20-49 20 49z"/><path d="m1112 538 16-40 16 40z"/>
+    <path d="m716 591 17-42 17 42z"/><path d="m741 595 14-35 14 35z"/>
+  </g>
+  <g fill="none" stroke="#3186a4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".95">
+    <path d="m162 350 202-113 260 69 207-99 152 66"/>
+    <path d="m364 237 60 101m260-32 135-99m-57 194 163-127"/>
+  </g>
+  <g fill="#fff" stroke="#3186a4" stroke-width="5">
+    <circle cx="162" cy="350" r="11"/>
+    <circle cx="364" cy="237" r="11"/>
+    <circle cx="624" cy="306" r="11"/>
+    <circle cx="831" cy="207" r="11"/>
+    <circle cx="983" cy="273" r="11"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="827" y="75" width="251" height="90" rx="20" fill="#fff" opacity=".94"/>
+    <circle cx="860" cy="120" r="12" fill="#3984ad"/>
+    <path d="M890 107h151M890 132h102" stroke="#a8b9ac" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -17,9 +17,37 @@
         --color-line: #d6e0d8;
         --shadow-soft: 0 14px 34px rgba(35, 75, 59, 0.1);
         --shadow-raised: 0 22px 44px rgba(35, 75, 59, 0.17);
+        --color-page-glow: rgba(202, 225, 239, 0.78);
+        --color-hero-end: #eef5f8;
+        --color-header: rgba(255, 255, 255, 0.94);
+        --color-button-surface: rgba(255, 255, 255, 0.7);
+        --color-table-hover: #edf4f7;
+        --color-border-hover: #b7c9bb;
         --radius-card: 20px;
         --radius-large: 30px;
         --content-width: 1160px;
+        color-scheme: light;
+      }
+
+      :root[data-theme="dark"] {
+        --color-cream: #111a17;
+        --color-surface: #1b2823;
+        --color-green: #a7d0b5;
+        --color-green-soft: #293d33;
+        --color-ink: #e7eee9;
+        --color-muted: #b2c2b8;
+        --color-accent: #82c7e8;
+        --color-accent-soft: #243943;
+        --color-line: #34463d;
+        --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.22);
+        --shadow-raised: 0 22px 44px rgba(0, 0, 0, 0.36);
+        --color-page-glow: rgba(54, 97, 115, 0.25);
+        --color-hero-end: #202f35;
+        --color-header: rgba(27, 40, 35, 0.94);
+        --color-button-surface: rgba(27, 40, 35, 0.78);
+        --color-table-hover: #233831;
+        --color-border-hover: #587465;
+        color-scheme: dark;
       }
 
       * {
@@ -33,13 +61,15 @@
 
       body {
         margin: 0;
+        padding-bottom: 5rem;
         background:
-          radial-gradient(ellipse at 90% 0%, rgba(202, 225, 239, 0.78), transparent 34rem),
+          radial-gradient(ellipse at 90% 0%, var(--color-page-glow), transparent 34rem),
           var(--color-cream);
         color: var(--color-ink);
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
+        transition: background-color 220ms ease, color 220ms ease;
       }
 
       img {
@@ -53,6 +83,11 @@
       }
 
       a:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 4px;
+      }
+
+      button:focus-visible {
         outline: 3px solid var(--color-accent);
         outline-offset: 4px;
       }
@@ -72,7 +107,7 @@
         justify-content: space-between;
         gap: 1.5rem;
         padding: 0.9rem 1.4rem;
-        background: rgba(255, 255, 255, 0.94);
+        background: var(--color-header);
         border: 1px solid var(--color-line);
         border-radius: 18px;
         box-shadow: var(--shadow-soft);
@@ -106,18 +141,73 @@
         flex-wrap: wrap;
       }
 
-      .nav a {
+      .nav [role="tab"] {
         padding: 0.6rem 0.85rem;
+        border: 0;
         border-radius: 999px;
+        background: transparent;
         color: var(--color-muted);
+        font: inherit;
         font-size: 0.92rem;
         font-weight: 600;
+        cursor: pointer;
         transition: color 180ms ease, background-color 180ms ease;
       }
 
-      .nav a:hover {
+      .nav [role="tab"]:hover,
+      .nav [role="tab"][aria-selected="true"] {
         background: var(--color-green);
-        color: #ffffff;
+        color: var(--color-cream);
+      }
+
+      .tab-panel {
+        animation: panel-enter 260ms ease-out both;
+      }
+
+      .tab-panel[hidden] {
+        display: none;
+      }
+
+      @keyframes panel-enter {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .theme-toggle {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 42px;
+        padding: 0.55rem 0.9rem;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        background: var(--color-button-surface);
+        color: var(--color-green);
+        font: inherit;
+        font-size: 0.88rem;
+        font-weight: 650;
+        cursor: pointer;
+        transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .theme-toggle-icon {
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-2px);
+        border-color: var(--color-accent);
+        background: var(--color-accent-soft);
       }
 
       main {
@@ -134,7 +224,7 @@
         min-height: 560px;
         padding: clamp(2.5rem, 7vw, 6rem);
         overflow: hidden;
-        background: linear-gradient(125deg, #ffffff 0%, #ffffff 62%, #eef5f8 100%);
+        background: linear-gradient(125deg, var(--color-surface) 0%, var(--color-surface) 62%, var(--color-hero-end) 100%);
         border: 1px solid var(--color-line);
         border-radius: var(--radius-large);
         box-shadow: var(--shadow-soft);
@@ -194,8 +284,10 @@
         padding: 0.75rem 1.2rem;
         border: 1px solid transparent;
         border-radius: 999px;
+        font-family: inherit;
         font-size: 0.95rem;
         font-weight: 650;
+        cursor: pointer;
         transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
       }
 
@@ -205,23 +297,24 @@
 
       .hero-button-primary {
         background: var(--color-green);
-        color: #ffffff;
+        color: var(--color-cream);
         box-shadow: 0 8px 18px rgba(35, 75, 59, 0.18);
       }
 
       .hero-button-primary:hover {
-        background: #193b2e;
+        background: var(--color-green-soft);
+        color: var(--color-green);
       }
 
       .hero-button-secondary {
         border-color: var(--color-line);
-        background: rgba(255, 255, 255, 0.7);
+        background: var(--color-button-surface);
         color: var(--color-green);
       }
 
       .hero-button-secondary:hover {
         border-color: var(--color-green);
-        background: #ffffff;
+        background: var(--color-surface);
       }
 
       .intro-figure {
@@ -231,8 +324,8 @@
         justify-self: end;
         margin: 0;
         padding: 0.65rem;
-        background: #ffffff;
-        border: 1px solid rgba(214, 224, 216, 0.9);
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
         border-radius: 30px;
         box-shadow: 0 24px 50px rgba(35, 75, 59, 0.18);
         animation: intro-rise 850ms 120ms ease-out both;
@@ -324,13 +417,56 @@
       }
 
       tbody tr:hover {
-        background: #edf4f7;
+        background: var(--color-table-hover);
       }
 
       .gallery {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1.4rem;
+      }
+
+      .project-tabs {
+        display: flex;
+        gap: 0.4rem;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 0 1.4rem;
+        padding: 0.35rem;
+        overflow-x: auto;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-soft);
+        scrollbar-width: thin;
+      }
+
+      .project-tab {
+        flex: 0 0 auto;
+        padding: 0.6rem 1rem;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--color-muted);
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 650;
+        cursor: pointer;
+        transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+      }
+
+      .project-tab:hover {
+        color: var(--color-green);
+      }
+
+      .project-tab[aria-pressed="true"] {
+        background: var(--color-green);
+        color: var(--color-cream);
+        box-shadow: 0 5px 14px rgba(35, 75, 59, 0.16);
+      }
+
+      .project-tab[aria-pressed="true"]:active {
+        transform: scale(0.97);
       }
 
       .card {
@@ -347,8 +483,28 @@
 
       .card:hover {
         transform: translateY(-5px);
-        border-color: #b7c9bb;
+        border-color: var(--color-border-hover);
         box-shadow: var(--shadow-raised);
+      }
+
+      .card[hidden] {
+        display: none;
+      }
+
+      .card.is-entering {
+        animation: card-enter 300ms ease-out both;
+      }
+
+      @keyframes card-enter {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .card img {
@@ -369,6 +525,14 @@
         font-weight: 650;
       }
 
+      .news-date {
+        display: block;
+        margin-bottom: 0.65rem;
+        color: var(--color-muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
       .card p {
         margin: 0;
         color: var(--color-muted);
@@ -385,6 +549,39 @@
 
       footer p {
         margin: 0;
+      }
+
+      .contact-links {
+        position: fixed;
+        right: max(20px, env(safe-area-inset-right));
+        bottom: max(20px, env(safe-area-inset-bottom));
+        z-index: 10;
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .contact-link {
+        display: grid;
+        width: 3rem;
+        height: 3rem;
+        place-items: center;
+        border: 1px solid var(--color-line);
+        border-radius: 50%;
+        background: var(--color-green);
+        color: var(--color-cream);
+        box-shadow: var(--shadow-raised);
+        transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+      }
+
+      .contact-link:hover {
+        transform: translateY(-3px);
+        background: var(--color-accent);
+        color: #ffffff;
+      }
+
+      .contact-link svg {
+        width: 1.4rem;
+        height: 1.4rem;
       }
 
       @media (max-width: 820px) {
@@ -404,7 +601,7 @@
         }
 
         .gallery {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
@@ -413,22 +610,45 @@
           width: calc(100% - 2rem);
         }
 
+        .contact-links {
+          right: max(12px, env(safe-area-inset-right));
+          bottom: max(12px, env(safe-area-inset-bottom));
+          gap: 0.55rem;
+        }
+
+        .contact-link {
+          width: 2.75rem;
+          height: 2.75rem;
+        }
+
         header {
           padding-top: 1rem;
         }
 
         .site-header {
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: 1fr auto;
           gap: 0.65rem;
           padding: 1rem;
         }
 
+        .brand {
+          font-size: 0.82rem;
+        }
+
+        .theme-toggle {
+          justify-self: end;
+          padding: 0.5rem 0.7rem;
+          font-size: 0.8rem;
+        }
+
         .nav {
+          grid-column: 1 / -1;
           justify-content: center;
           gap: 0.1rem;
         }
 
-        .nav a {
+        .nav [role="tab"] {
           padding: 0.55rem 0.7rem;
           font-size: 0.88rem;
         }
@@ -467,6 +687,20 @@
           margin-bottom: 1.2rem;
         }
 
+        .project-tabs {
+          width: 100%;
+          border-radius: 16px;
+        }
+
+        .project-tab {
+          padding: 0.55rem 0.8rem;
+          font-size: 0.84rem;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
         th,
         td {
           padding: 0.85rem 1rem;
@@ -485,7 +719,9 @@
         }
 
         .hero-copy,
-        .intro-figure {
+        .intro-figure,
+        .card.is-entering,
+        .tab-panel {
           animation: none;
         }
       }
@@ -495,16 +731,20 @@
     <header class="container">
       <div class="site-header">
         <div class="brand">Franziska Litz</div>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="#ueber-mich">Über mich</a>
-          <a href="#stationen">Stationen</a>
-          <a href="#projekte">Projekte</a>
+        <nav class="nav" role="tablist" aria-label="Seitenbereiche">
+          <button id="tab-about" type="button" role="tab" aria-controls="panel-about" aria-selected="true" tabindex="0">Über mich</button>
+          <button id="tab-stations" type="button" role="tab" aria-controls="panel-stations" aria-selected="false" tabindex="-1">Stationen</button>
+          <button id="tab-projects" type="button" role="tab" aria-controls="panel-projects" aria-selected="false" tabindex="-1">Projekte</button>
+          <button id="tab-news" type="button" role="tab" aria-controls="panel-news" aria-selected="false" tabindex="-1">Neuigkeiten</button>
         </nav>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Nachtmodus aktivieren">
+          <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        </button>
       </div>
     </header>
 
     <main class="container">
-      <section class="hero" id="ueber-mich" aria-labelledby="title">
+      <section class="hero tab-panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
         <div class="hero-copy">
           <h1 id="title">Hallo, mein Name ist Franziska Litz !</h1>
           <p class="hero-subtitle">Ich bin 21 Jahre alt und komme aus Rheinland-Pfalz.</p>
@@ -512,8 +752,8 @@
             Seit dem Wintersemester 2024/25 studiere ich <strong>Geoinformatik und Vermessung an der Hochschule Mainz</strong> und verbinde mein Studium mit der praktischen Arbeit beim <strong>Vermessungs- und Katasteramt</strong>. Besonders fasziniert mich die Verbindung von digitalen Technologien, geografischen Daten und der realen Welt. Ich finde es spannend, wie mithilfe präziser Vermessungen und moderner Geoinformationssysteme unsere Umwelt erfasst, analysiert und anschaulich dargestellt werden kann. Die Kombination aus theoretischem Wissen und praktischer Erfahrung ermöglicht es mir, die vielfältigen Einsatzmöglichkeiten der Geoinformatik kennenzulernen und aktiv an der Gestaltung einer digitalen, räumlich vernetzten Zukunft mitzuwirken.
           </p>
           <div class="hero-actions">
-            <a class="hero-button hero-button-primary" href="#stationen">Mehr über mich</a>
-            <a class="hero-button hero-button-secondary" href="#projekte">Meine Projekte</a>
+            <button class="hero-button hero-button-primary" type="button" data-open-tab="tab-stations">Mehr über mich</button>
+            <button class="hero-button hero-button-secondary" type="button" data-open-tab="tab-projects">Meine Projekte</button>
           </div>
         </div>
 
@@ -522,7 +762,7 @@
         </figure>
       </section>
 
-      <section id="stationen" aria-labelledby="stationen-title">
+      <section id="panel-stations" class="tab-panel" role="tabpanel" aria-labelledby="tab-stations" tabindex="0" hidden>
         <div class="section-heading">
           <h2 id="stationen-title">Lebensstationen</h2>
         </div>
@@ -573,13 +813,20 @@
         </div>
       </section>
 
-      <section id="projekte" aria-labelledby="galerie-title">
+      <section id="panel-projects" class="tab-panel" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
         <div class="section-heading">
           <h2 id="galerie-title">Ausgewählte Projekte</h2>
         </div>
 
-        <div class="gallery">
-          <article class="card">
+        <div class="project-tabs" role="group" aria-label="Projekte filtern">
+          <button class="project-tab" type="button" data-filter="all" aria-pressed="true">Alle</button>
+          <button class="project-tab" type="button" data-filter="geomap" aria-pressed="false">GeoMap</button>
+          <button class="project-tab" type="button" data-filter="vermessung" aria-pressed="false">Vermessung 3D</button>
+          <button class="project-tab" type="button" data-filter="smartcity" aria-pressed="false">SmartCity</button>
+        </div>
+
+        <div class="gallery" aria-live="polite">
+          <article class="card" data-category="geomap">
             <img src="assets/geomap.svg" alt="Digitale Karte mit geografischen Informationen" />
             <div class="card-body">
               <h3>GeoMap – Digitale Karten gestalten</h3>
@@ -587,7 +834,7 @@
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="vermessung">
             <img src="assets/vermessung3d.svg" alt="Digitales Geländemodell für die Vermessung" />
             <div class="card-body">
               <h3>Vermessung 3D – Die Welt digital erfassen</h3>
@@ -595,7 +842,7 @@
             </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="smartcity">
             <img src="assets/smartcity.svg" alt="Digitale Stadtplanung mit geografischen Daten" />
             <div class="card-body">
               <h3>SmartCity Mainz – Stadtentwicklung sichtbar machen</h3>
@@ -604,11 +851,209 @@
           </article>
         </div>
       </section>
+
+      <section id="panel-news" class="tab-panel" role="tabpanel" aria-labelledby="tab-news" tabindex="0" hidden>
+        <div class="section-heading">
+          <h2 id="news-title">Neuigkeiten</h2>
+        </div>
+        <p id="news-status" role="status" aria-live="polite">Nachrichten werden geladen …</p>
+        <div id="news-list" class="gallery" aria-label="Aktuelle Nachrichten"></div>
+      </section>
     </main>
 
     <footer class="container">
       <p>© 2026 · Franziska Litz
       </p>
     </footer>
+    <nav class="contact-links" aria-label="Kontaktmöglichkeiten">
+      <a class="contact-link" href="mailto:max.mustermann@example.com" aria-label="E-Mail an max.mustermann@example.com senden" title="E-Mail senden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+          <path d="m4 7 8 6 8-6"></path>
+        </svg>
+      </a>
+      <a class="contact-link" href="https://github.com/max-mustermann-demo" target="_blank" rel="noopener noreferrer" aria-label="GitHub-Profil von Max Mustermann (öffnet in neuem Tab)" title="GitHub-Profil öffnen">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.31-3.76-1.31-.51-1.3-1.24-1.65-1.24-1.65-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.8 2.23 3.3 1.7.1-.72.4-1.21.72-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.15-3-.12-.29-.5-1.43.11-2.98 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.55.23 2.69.11 2.98.72.78 1.15 1.78 1.15 3 0 4.27-2.6 5.21-5.08 5.49.4.35.76 1.02.76 2.06v3.06c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9z"></path>
+        </svg>
+      </a>
+    </nav>
+    <script>
+      const root = document.documentElement;
+      const themeToggle = document.querySelector(".theme-toggle");
+      const themeToggleIcon = document.querySelector(".theme-toggle-icon");
+      const sectionTabs = document.querySelectorAll('.nav [role="tab"]');
+      const sectionPanels = document.querySelectorAll('.tab-panel[role="tabpanel"]');
+      const projectTabs = document.querySelectorAll(".project-tab");
+      const projectCards = document.querySelectorAll(".card[data-category]");
+      const newsList = document.querySelector("#news-list");
+      const newsStatus = document.querySelector("#news-status");
+
+      const savedTheme = localStorage.getItem("franziska-theme");
+      if (savedTheme === "dark") {
+        root.dataset.theme = "dark";
+      }
+
+      function updateThemeButton() {
+        const isDark = root.dataset.theme === "dark";
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+        themeToggle.setAttribute("aria-label", isDark ? "Light Mode aktivieren" : "Nachtmodus aktivieren");
+        themeToggleIcon.textContent = isDark ? "☀" : "☾";
+      }
+
+      updateThemeButton();
+
+      themeToggle.addEventListener("click", () => {
+        const isDark = root.dataset.theme !== "dark";
+        root.dataset.theme = isDark ? "dark" : "light";
+        localStorage.setItem("franziska-theme", isDark ? "dark" : "light");
+        updateThemeButton();
+      });
+
+      function activateSectionTab(tab, moveFocus = false) {
+        sectionTabs.forEach((sectionTab) => {
+          const isSelected = sectionTab === tab;
+          sectionTab.setAttribute("aria-selected", String(isSelected));
+          sectionTab.tabIndex = isSelected ? 0 : -1;
+        });
+
+        sectionPanels.forEach((panel) => {
+          panel.hidden = panel.id !== tab.getAttribute("aria-controls");
+        });
+
+        if (moveFocus) {
+          tab.focus();
+        }
+      }
+
+      sectionTabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateSectionTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+
+          if (event.key === "ArrowRight") {
+            nextIndex = (index + 1) % sectionTabs.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (index - 1 + sectionTabs.length) % sectionTabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = sectionTabs.length - 1;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          activateSectionTab(sectionTabs[nextIndex], true);
+        });
+      });
+
+      document.querySelectorAll("[data-open-tab]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const tab = document.getElementById(button.dataset.openTab);
+          activateSectionTab(tab);
+          tab.focus();
+        });
+      });
+
+      function renderNews(newsItems) {
+        const dateFormatter = new Intl.DateTimeFormat("de-DE", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC"
+        });
+        const fragment = document.createDocumentFragment();
+
+        newsItems.forEach((item) => {
+          const date = new Date(`${item.date}T00:00:00Z`);
+          if (
+            !item.title ||
+            !/^\d{4}-\d{2}-\d{2}$/.test(item.date) ||
+            Number.isNaN(date.getTime()) ||
+            date.toISOString().slice(0, 10) !== item.date ||
+            !item.image ||
+            !item.text
+          ) {
+            throw new Error("Eine Nachricht enthält fehlende oder ungültige Angaben.");
+          }
+
+          const article = document.createElement("article");
+          article.className = "card";
+
+          const image = document.createElement("img");
+          image.src = item.image;
+          image.alt = item.title;
+
+          const body = document.createElement("div");
+          body.className = "card-body";
+
+          const title = document.createElement("h3");
+          title.textContent = item.title;
+
+          const dateElement = document.createElement("time");
+          dateElement.className = "news-date";
+          dateElement.dateTime = item.date;
+          dateElement.textContent = dateFormatter.format(date);
+
+          const text = document.createElement("p");
+          text.textContent = item.text;
+
+          body.append(title, dateElement, text);
+          article.append(image, body);
+          fragment.append(article);
+        });
+
+        newsList.replaceChildren(fragment);
+        newsStatus.hidden = newsItems.length > 0;
+        if (newsItems.length === 0) {
+          newsStatus.textContent = "Derzeit gibt es keine Nachrichten.";
+        }
+      }
+
+      async function loadNews() {
+        try {
+          const response = await fetch("assets/news.json");
+          if (!response.ok) {
+            throw new Error(`Die Nachrichtendatei konnte nicht geladen werden (HTTP ${response.status}).`);
+          }
+
+          const newsItems = await response.json();
+          if (!Array.isArray(newsItems)) {
+            throw new Error("Die Nachrichtendatei hat ein ungültiges Format.");
+          }
+
+          renderNews(newsItems);
+        } catch (error) {
+          console.error("Fehler beim Laden der Nachrichten:", error);
+          newsStatus.textContent = "Die Nachrichten konnten nicht geladen werden. Bitte versuchen Sie es später erneut.";
+        }
+      }
+
+      loadNews();
+
+      projectTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const filter = tab.dataset.filter;
+
+          projectTabs.forEach((projectTab) => {
+            projectTab.setAttribute("aria-pressed", String(projectTab === tab));
+          });
+
+          projectCards.forEach((card) => {
+            const shouldShow = filter === "all" || card.dataset.category === filter;
+            card.hidden = !shouldShow;
+
+            if (shouldShow) {
+              card.classList.remove("is-entering");
+              requestAnimationFrame(() => card.classList.add("is-entering"));
+              card.addEventListener("animationend", () => card.classList.remove("is-entering"), { once: true });
+            } else {
+              card.classList.remove("is-entering");
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

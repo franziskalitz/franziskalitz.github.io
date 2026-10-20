@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Ein neues Semester mit räumlichen Daten",
+    "date": "2026-10-20",
+    "image": "assets/news-semester.svg",
+    "text": "Im Studium geht es wieder darum, räumliche Informationen zu erfassen, zu ordnen und verständlich aufzubereiten. Besonders spannend ist, wie aus einzelnen Daten ein Gesamtbild entsteht."
+  },
+  {
+    "title": "Vermessung beginnt draußen",
+    "date": "2026-10-16",
+    "image": "assets/news-fieldwork.svg",
+    "text": "Bei der Arbeit im Gelände treffen sorgfältige Messungen und moderne Technik aufeinander. So wird Schritt für Schritt sichtbar, wie präzise Daten aus der realen Welt gewonnen werden."
+  },
+  {
+    "title": "Mainz aus einer neuen Perspektive",
+    "date": "2026-10-12",
+    "image": "assets/news-mainz.svg",
+    "text": "Ob Straßen, Plätze oder Grünflächen: Ein Blick auf Mainz mit Geoinformatik zeigt, wie viele räumliche Zusammenhänge den Alltag in einer Stadt prägen."
+  }
+]
